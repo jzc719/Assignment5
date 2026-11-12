@@ -1,0 +1,109 @@
+# 1
+antibioticsOnHand
+-----------------
+              100
+Use WHERE to keep the entry for bottled antibiotics, then use SUM to total the quantity on hand.
+
+# 2
+volunteerName
+-------------
+Gene Lewin
+Use NOT LIKE to filter out phone numbers that start with 2 and names that end in Jones. Use TRIM on the name first to remove extra spaces, and AND to require both conditions. Missing phone numbers also drop out because NOT LIKE on NULL does not return true.
+
+# 3
+volunteerName
+-------------
+George Brewer
+Use JOIN to connect volunteers to their assignments, tasks, and task types. Use WHERE to keep transporting tasks and DISTINCT to show each matching volunteer name once.
+
+# 4
+       taskDescription
+------------------------------
+Prepare 100 food packages
+Take packages to the warehouse
+Use LEFT JOIN to keep every task while looking for a matching assignment. Use IS NULL on the assignment's task code to keep tasks that had no match.
+
+# 5
+packageTypeName
+---------------
+food and water
+Use JOIN to connect package types to packages and the items inside them. Use LIKE with a wildcard on both sides of "bottle" to find it anywhere in the item description. Use DISTINCT to show each matching package type once.
+
+# 6
+   itemDescription
+---------------------
+bottle of antibiotics
+bottle of aspirin
+flashlight
+pack of bandages
+Use LEFT JOIN to keep every item while looking for it in package contents. Use IS NULL on the matched item ID to keep items that never appeared in a package.
+
+# 7
+       taskDescription
+------------------------------
+Prepare 100 water packages
+Prepare 20 children's packages
+Prepare 5,000 packages
+Use JOIN to connect volunteers to their assigned tasks. Use TRIM and LIKE to keep addresses that end in NJ, then use DISTINCT to show each matching task description once.
+
+# 8
+volunteerName
+-------------
+Chris Jordan
+Joan Simmons
+Use JOIN to match assignments to volunteer names. Use WHERE to keep start dates on or after January 1 and before July 1, 2021. Use DISTINCT so a name appears once even if the volunteer started several assignments in that period.
+
+# 9
+volunteerName
+-------------
+Gerry Banks
+Julie White
+Use JOIN to connect volunteers and their assignments to the packages produced by those tasks and the items inside them. Use WHERE to keep rows for cans of spam and DISTINCT to show each matching volunteer name once.
+
+# 10
+itemDescription
+---------------
+Baby formula
+Use JOIN to match each package contents row to its item's unit price. In WHERE, multiply the quantity by that price and keep rows where the subtotal is exactly $100. Use DISTINCT to show each qualifying item description once.
+
+# 11
+taskStatusName  volunteerCount
+--------------  --------------
+open                         4
+closed                       3
+ongoing                      2
+pending                      1
+Use LEFT JOIN to connect statuses to tasks and assignments while keeping statuses with no assigned volunteers. Use GROUP BY to make one group per status and COUNT(DISTINCT ...) to count each volunteer once within that group. Use ORDER BY with DESC to put the highest counts first.
+
+# 12
+taskCode  totalWeight
+--------  -----------
+     106        308.0
+Use GROUP BY on the task code and SUM to add the package weights for each task. Use ORDER BY with DESC to put the heaviest total first, then use LIMIT 1 to return that task and its total weight.
+
+# 13
+nonPackingTaskCount
+-------------------
+                  3
+Use JOIN to look up each task's type, then use WHERE with <> to exclude packing tasks. Use COUNT(*) to count the remaining task rows.
+
+# 14
+itemDescription
+---------------
+can of spam
+dried fruit
+men's coat
+sleeping bag
+tent
+women's coat
+Use JOIN to start with items that appeared in packages, then use LEFT JOIN to find volunteer assignments for the tasks that produced those packages. Use GROUP BY to group the rows by item, and HAVING with COUNT(DISTINCT ...) to keep items linked to fewer than three different volunteers.
+
+# 15
+packageId  totalValue
+---------  ----------
+        6       150.0
+        2       151.0
+        4       350.0
+       10       750.0
+        5      1420.0
+Use JOIN to get the unit price for each item in a package. Use GROUP BY on the package ID and SUM to add up the quantity times unit price for each package. Use HAVING to keep totals over $100 and ORDER BY to sort them from lowest to highest.
